@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css" />
+        <script src="./script.js" defer></script>
+        <title>MyBooksList</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <header class="header">
+                <div class="header-logo">
+                    <img
+                        src="./assets/business-3d-stack-of-different-books.png"
+                        alt="Page Logo"
+                    />
+                </div>
+                <div class="header-center">
+                    <h1 class="header-title">
+                        My<span class="title-color">Books</span>List
+                    </h1>
+                </div>
+                <div class="header-btn-login">
+                    <button class="btn btn-login">Login</button>
+                </div>
+            </header>
+            <div class="open-modal">
+                <button id="btn-open-modal" class="btn btn-open-modal">
+                    + Add New Book
+                </button>
+            </div>
+            <div class="book-cards"></div>
+            <footer class="footer">
+                <small
+                    >©
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    rflmorais <a href="">Github</a>
+                </small>
+            </footer>
+        </div>
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <button id="btn-close-modal" class="btn btn-close-modal">
+                    &times;
+                </button>
+                <div class="modal-form">
+                    <form action="/" class="add-book-form" id="add-book-form">
+                        <h2 class="form-title">
+                            Add Book<!--Add book || Edit Book -->
+                        </h2>
+                        <label for="title">Title:</label>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            placeholder="Book Title"
+                            autocomplete="off"
+                            required
+                            autofocus
+                        />
+                        <label for="author">Author:</label>
+                        <input
+                            type="text"
+                            id="author"
+                            name="author"
+                            placeholder="Author"
+                            autocomplete="off"
+                        />
+                        <label for="pages">Number of pages:</label>
+                        <input
+                            type="number"
+                            id="pages"
+                            name="pages"
+                            placeholder="Pages"
+                            autocomplete="off"
+                            min="1"
+                        />
+                        <label for="isRead"></label>
+                        <select name="read" id="isRead" required>
+                            <option value="false">to Read</option>
+                            <option value="true">Read</option>
+                        </select>
+                        <button
+                            type="submit"
+                            class="btn btn-submit"
+                            id="btn-submit"
+                        >
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
