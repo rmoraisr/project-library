@@ -35,7 +35,7 @@ function addBookToLibrary(title, author, pages, isRead) {
     renderBooks();
 }
 
-//helper function to create html elements with textcontent and classes
+//helper function to create html elements with text content and classes
 function createBookElement(el, content, className) {}
 
 //Function to create all of the book content on the book dom card
