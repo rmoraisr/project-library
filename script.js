@@ -4,6 +4,21 @@ const modal = document.getElementById("modal");
 const elementToBlur = document.querySelector(".books-cards");
 const books = document.querySelector(".books-cards"); // main div holding all bookings cards
 
+// Add books via form
+const addBookForm = document.querySelector("#add-book-form");
+addBookForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const data = new FormData(e.target);
+    let newBook = {};
+    for (let [name, value] of data) {
+        newBook[name] = value;
+    }
+    addBookToLibrary(newBook["title"], newBook["author"], newBook["pages"]);
+    addBookForm.reset();
+    hideModal();
+});
+
 // Functions related to the modal
 function showModal() {
     modal.style.display = "block";
@@ -66,6 +81,11 @@ function renderBooks() {
 }
 
 //Books array
-let myLibrary = [{ title: "Book2", author: "Me", pages: 500 }];
+let myLibrary = [
+    { title: "Book2", author: "Me", pages: 500 },
+    { title: "Book3", author: "Me", pages: 500 },
+    { title: "Book2", author: "Me", pages: 500 },
+    { title: "Book3", author: "Me", pages: 500 },
+];
 
 renderBooks();
