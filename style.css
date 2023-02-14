@@ -64,6 +64,48 @@
     padding: 15px;
 }
 
+/* Books Cards */
+
+.books-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: clamp(250px, min-content, 400px);
+    overflow: auto;
+    gap: 2rem;
+    padding: 1.5rem;
+}
+
+.book-card {
+    background-color: var(--background);
+    padding: 1rem;
+    border-radius: 7px;
+    box-shadow: 8px 8px 16px #b3b4bd, -8px -8px 16px #ffffff;
+    border-left: solid 5px var(--color);
+    display: flex;
+    flex-direction: column;
+}
+
+.book-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    padding-top: 8px;
+    margin-bottom: 0.5rem;
+    font-style: oblique;
+    text-decoration: underline;
+    text-decoration-thickness: 0.15rem;
+}
+.book-author {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+.book-pages {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+/* Modal */
 .modal {
     width: 30%;
     height: 65%;
