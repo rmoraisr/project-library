@@ -1,8 +1,8 @@
 const openModal = document.getElementById("btn-open-modal");
 const closeModal = document.getElementById("btn-close-modal");
 const modal = document.getElementById("modal");
-const elementToBlur = document.querySelector(".book-cards");
-const books = document.querySelector(".books"); // main div holding all bookings cards
+const elementToBlur = document.querySelector(".books-cards");
+const books = document.querySelector(".books-cards"); // main div holding all bookings cards
 
 // Functions related to the modal
 function showModal() {
@@ -36,10 +36,27 @@ function addBookToLibrary(title, author, pages, isRead) {
 }
 
 //helper function to create html elements with text content and classes
-function createBookElement(el, content, className) {}
+function createBookElement(el, content, className) {
+    const element = document.createElement(el);
+    element.textContent = content;
+    element.setAttribute("class", className);
+    return element;
+}
 
 //Function to create all of the book content on the book dom card
-function createBookItem(book, index) {}
+function createBookItem(book, index) {
+    const bookItem = document.createElement("div");
+    bookItem.setAttribute("id", index);
+    bookItem.setAttribute("key", index);
+    bookItem.setAttribute("class", "book-card");
+    bookItem.append(
+        createBookElement("h2", `Title: ${book.title}`, "book-title"),
+        createBookElement("h2", `Author: ${book.author}`, "book-author"),
+        createBookElement("h2", `Pages: ${book.pages}`, "book-pages")
+        /* createReadElement */
+    );
+    books.append(bookItem);
+}
 
 function renderBooks() {
     books.textContent = "";
@@ -49,4 +66,6 @@ function renderBooks() {
 }
 
 //Books array
-let myLibrary = [];
+let myLibrary = [{ title: "Book2", author: "Me", pages: 500 }];
+
+renderBooks();
