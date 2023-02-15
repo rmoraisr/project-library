@@ -70,13 +70,20 @@ function createBookItem(book, index) {
     bookItem.setAttribute("key", index);
     bookItem.setAttribute("class", "book-card");
     bookItem.append(
+        createEditIcon(book),
         createBookElement("h2", `Title: ${book.title}`, "book-title"),
         createBookElement("p", `Author: ${book.author}`, "book-author"),
         createBookElement("p", `Pages: ${book.pages}`, "book-pages"),
         createBookElement("button", book.isRead, "book-isRead")
-        /* createReadElement */
     );
     books.append(bookItem);
+}
+
+function createEditIcon(book) {
+    const editIcon = document.createElement("img");
+    editIcon.src = "./assets/pencil.svg";
+    editIcon.setAttribute("class", "icons");
+    return editIcon;
 }
 
 // Get the value select on the dropdown list

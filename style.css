@@ -205,6 +205,12 @@ select {
     filter: blur(4px);
 }
 
+.icons {
+    filter: invert(58%) sepia(9%) saturate(870%) hue-rotate(215deg) brightness(86%) contrast(83%);
+    width: 1.5rem;
+    align-self: flex-end;
+}
+
 .footer {
     position: fixed;
     bottom: 0;
