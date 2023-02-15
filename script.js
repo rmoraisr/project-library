@@ -14,7 +14,12 @@ addBookForm.addEventListener("submit", (e) => {
     for (let [name, value] of data) {
         newBook[name] = value;
     }
-    addBookToLibrary(newBook["title"], newBook["author"], newBook["pages"]);
+    addBookToLibrary(
+        newBook["title"],
+        newBook["author"],
+        newBook["pages"],
+        getSelectedValue()
+    );
     addBookForm.reset();
     hideModal();
 });
@@ -37,7 +42,7 @@ openModal.addEventListener("click", () => showModal());
 closeModal.addEventListener("click", () => hideModal());
 
 // Functions related to the books constructor
-function Book(title, author, pages, isRead = false) {
+function Book(title, author, pages, isRead) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -67,10 +72,19 @@ function createBookItem(book, index) {
     bookItem.append(
         createBookElement("h2", `Title: ${book.title}`, "book-title"),
         createBookElement("p", `Author: ${book.author}`, "book-author"),
-        createBookElement("p", `Pages: ${book.pages}`, "book-pages")
+        createBookElement("p", `Pages: ${book.pages}`, "book-pages"),
+        createBookElement("button", book.isRead, "book-isRead")
         /* createReadElement */
     );
     books.append(bookItem);
+}
+
+// Get the value select on the dropdown list
+function getSelectedValue() {
+    const selectElement = document.getElementById("isRead");
+    const selectedIndex = selectElement.selectedIndex;
+    const selectedValue = selectElement.options[selectedIndex].text;
+    return selectedValue;
 }
 
 function renderBooks() {
@@ -82,7 +96,7 @@ function renderBooks() {
 
 //Books array
 let myLibrary = [
-    { title: "Book2", author: "Me", pages: 500 },
+    { title: "Book2", author: "Me", pages: 500, isRead: "to Read" },
     { title: "Book3", author: "Me", pages: 500 },
     { title: "Book2", author: "Me", pages: 500 },
     { title: "Book3", author: "Me", pages: 500 },
