@@ -66,8 +66,8 @@ function createBookItem(book, index) {
     bookItem.setAttribute("class", "book-card");
     bookItem.append(
         createBookElement("h2", `Title: ${book.title}`, "book-title"),
-        createBookElement("h2", `Author: ${book.author}`, "book-author"),
-        createBookElement("h2", `Pages: ${book.pages}`, "book-pages")
+        createBookElement("p", `Author: ${book.author}`, "book-author"),
+        createBookElement("p", `Pages: ${book.pages}`, "book-pages")
         /* createReadElement */
     );
     books.append(bookItem);
