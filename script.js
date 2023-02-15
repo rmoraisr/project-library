@@ -27,7 +27,6 @@ addBookForm.addEventListener("submit", (e) => {
 // Functions related to the modal
 function showModal() {
     modal.style.display = "block";
-    document.querySelector(".form-title").textContent = "Add Book";
     let focusedInput = modal.querySelector("input");
     focusedInput.focus();
     elementToBlur.classList.add("blur");
@@ -38,7 +37,10 @@ function hideModal() {
     elementToBlur.classList.remove("blur");
 }
 
-openModal.addEventListener("click", () => showModal());
+openModal.addEventListener("click", () => {
+    document.querySelector(".form-title").textContent = "Add Book";
+    showModal();
+});
 closeModal.addEventListener("click", () => hideModal());
 
 // Functions related to the books constructor
@@ -79,12 +81,21 @@ function createBookItem(book, index) {
     books.append(bookItem);
 }
 
+// Render the Edit Icon into the book card
 function createEditIcon(book) {
     const editIcon = document.createElement("img");
     editIcon.src = "./assets/pencil.svg";
     editIcon.setAttribute("class", "icons");
     return editIcon;
 }
+
+// // Open the modal with the book values when the edit icons is clicked
+// function editBookItem(book) {
+//     editIcon.addEventListener("click", () => {
+//         showModal();
+//         document.querySelector(".form-title").textContent = "Edit Book";
+//     });
+// }
 
 // Get the value select on the dropdown list
 function getSelectedValue() {
