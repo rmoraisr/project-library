@@ -93,6 +93,12 @@ function createEditIcon(book) {
 function editBookItem(book) {
     showModal();
     document.querySelector(".form-title").textContent = "Edit Book";
+    document
+        .querySelector(".add-book-form")
+        .setAttribute("dataset-bookid", book.id);
+    document.querySelector("#title").value = book.title || "";
+    document.querySelector("#author").value = book.author || "";
+    document.querySelector("#pages").value = book.pages || "";
 }
 
 // Get the value select on the dropdown list
