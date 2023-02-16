@@ -66,10 +66,9 @@ function createBookElement(el, content, className) {
 }
 
 //Function to create all of the book content on the book dom card
-function createBookItem(book, index) {
+function createBookItem(book) {
     const bookItem = document.createElement("div");
-    bookItem.setAttribute("id", index);
-    bookItem.setAttribute("key", index);
+    bookItem.setAttribute("dataset-bookid", book.id);
     bookItem.setAttribute("class", "book-card");
     bookItem.append(
         createEditIcon(book),
@@ -106,17 +105,17 @@ function getSelectedValue() {
 
 function renderBooks() {
     books.textContent = "";
-    myLibrary.map((book, index) => {
-        createBookItem(book, index);
+    myLibrary.map((book) => {
+        createBookItem(book);
     });
 }
 
 //Books array
-let myLibrary = [
-    { title: "Book2", author: "Me", pages: 500, isRead: "to Read" },
-    { title: "Book3", author: "Me", pages: 500 },
-    { title: "Book2", author: "Me", pages: 500 },
-    { title: "Book3", author: "Me", pages: 500 },
-];
+let myLibrary = [];
+
+addBookToLibrary("book1", "me", 34, "to Read");
+addBookToLibrary("book2", "me", 340, "Read");
+addBookToLibrary("book3", "me", 54, "to Read");
+addBookToLibrary("book4", "me", 3244, "to Read");
 
 renderBooks();
