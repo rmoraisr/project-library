@@ -86,16 +86,15 @@ function createEditIcon(book) {
     const editIcon = document.createElement("img");
     editIcon.src = "./assets/pencil.svg";
     editIcon.setAttribute("class", "icons");
+    editIcon.addEventListener("click", () => editBookItem(book));
     return editIcon;
 }
 
-// // Open the modal with the book values when the edit icons is clicked
-// function editBookItem(book) {
-//     editIcon.addEventListener("click", () => {
-//         showModal();
-//         document.querySelector(".form-title").textContent = "Edit Book";
-//     });
-// }
+// Open the modal with the book values when the edit icons is clicked
+function editBookItem(book) {
+    showModal();
+    document.querySelector(".form-title").textContent = "Edit Book";
+}
 
 // Get the value select on the dropdown list
 function getSelectedValue() {
