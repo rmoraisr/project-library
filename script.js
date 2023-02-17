@@ -1,18 +1,29 @@
-// Book Constructor
+// #### Book Constructor #####
+function Book(title, author, pages, isRead) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = isRead;
+    this.id = Math.floor(Math.random() * 1000000);
+}
 
-// Library Array
+// ### Library Array ###
+let myLibrary = [];
 
-// Add book to library
+// ### Add book to library ###
+function addBookToLibrary(book) {
+    myLibrary.push(book);
+}
 
-// Render library
+// ### Render library ###
 
-// Modal Form
+// ### Modal Form ###
 
-// Event Listeners
+// ### Event Listeners ###
 
-// Sample data
+// ### Sample data ###
 
-// Initialize render
+// ### Initialize render ###
 
 const openModal = document.getElementById("btn-open-modal");
 const closeModal = document.getElementById("btn-close-modal");
@@ -60,18 +71,6 @@ openModal.addEventListener("click", () => {
 closeModal.addEventListener("click", () => hideModal());
 
 // Functions related to the books constructor
-function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    this.id = Math.floor(Math.random() * 1000000);
-}
-
-function addBookToLibrary(title, author, pages, isRead) {
-    myLibrary.push(new Book(title, author, pages, isRead));
-    renderBooks();
-}
 
 //helper function to create html elements with text content and classes
 function createBookElement(el, content, className) {
@@ -133,7 +132,6 @@ function renderBooks() {
 }
 
 //Books array
-let myLibrary = [];
 
 addBookToLibrary("book1", "me", 34, "to Read");
 addBookToLibrary("book2", "me", 340, "Read");
