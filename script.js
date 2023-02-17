@@ -1,5 +1,5 @@
 // #### Book Constructor #####
-function Book(id = new Date().getTime(), title, author, pages, isRead) {
+function Book(title, author, pages, isRead, id = new Date().getTime()) {
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -111,7 +111,7 @@ function submitForm(event) {
     const pages = pagesInput.value;
     const read = readInput.value;
     const id = currentBook ? currentBook.id : new Date().getTime();
-    const book = new Book(id, title, author, pages, read);
+    const book = new Book(title, author, pages, read, id);
     if (currentBook) {
         const index = myLibrary.findIndex((b) => b.id === currentBook.id);
         myLibrary[index] = book;
@@ -126,10 +126,12 @@ function submitForm(event) {
 bookForm.addEventListener("submit", submitForm);
 
 // ### Sample data ###
-const book1 = new Book(1, "The Hobbit", "J.R.R. Tolkien", 295, true);
-const book2 = new Book(2, "1984", "George Orwell", 328, false);
+const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
+const book2 = new Book("1984", "George Orwell", 328, false);
 addBookToLibrary(book1);
 addBookToLibrary(book2);
+
+console.log(myLibrary)
 
 // ### Initialize render ###
 renderBooks();
