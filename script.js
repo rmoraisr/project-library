@@ -33,6 +33,8 @@ function renderBooks() {
         const bookCard = document.createElement("div");
         bookCard.setAttribute("dataset-bookid", book.id);
         bookCard.setAttribute("class", "book-card");
+        const iconsContainer = document.createElement("div");
+        iconsContainer.setAttribute("class", "icons-container");
         // edit icon
         const editIcon = document.createElement("img");
         editIcon.src = "./assets/pencil.svg";
@@ -61,7 +63,8 @@ function renderBooks() {
             readButton.textContent = book.isRead ? "Read" : "To Read";
         });
         // append all elements to the book item
-        bookCard.append(editIcon, deleteIcon, title, author, pages, readButton);
+        iconsContainer.append(editIcon, deleteIcon);
+        bookCard.append(iconsContainer, title, author, pages, readButton);
         booksGrid.append(bookCard);
     }
 }
