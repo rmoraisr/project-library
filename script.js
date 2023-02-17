@@ -62,6 +62,7 @@ function renderBooks() {
         });
         // append all elements to the book item
         bookCard.append(editIcon, deleteIcon, title, author, pages, readButton);
+        booksGrid.append(bookCard);
     }
 }
 
@@ -130,8 +131,6 @@ const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
 const book2 = new Book("1984", "George Orwell", 328, false);
 addBookToLibrary(book1);
 addBookToLibrary(book2);
-
-console.log(myLibrary)
 
 // ### Initialize render ###
 renderBooks();
