@@ -1,10 +1,10 @@
 // #### Book Constructor #####
-function Book(title, author, pages, isRead) {
+function Book(id = new Date().getTime(), title, author, pages, isRead) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
-    this.id = Math.floor(Math.random() * 1000000);
+    this.id = id;
 }
 
 // ### Library Array ###
@@ -67,75 +67,69 @@ function renderBooks() {
 
 // ### Modal Form ###
 const modal = document.getElementById("modal");
+const openModalButton = document.getElementById("btn-open-modal");
+openModalButton.addEventListener("click", () => {
+    document.querySelector(".form-title").textContent = "Add Book";
+    openModal("add");
+});
+const closeModalButton = document.getElementById("btn-close-modal");
+closeModalButton.addEventListener("click", () => closeModal());
+
+const bookForm = document.getElementById("book-form");
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
+const pagesInput = document.getElementById("pages");
+const readInput = document.getElementById("isRead");
+let currentBook;
+
+function openModal(mode, book = null) {
+    currentBook = book;
+    if (mode === "add") {
+        bookForm.reset();
+        currentBook = null;
+    } else if (mode === "edit") {
+        titleInput.value = book.title;
+        authorInput.value = book.author;
+        pagesInput.value = book.pages;
+        readInput.value = book.isRead;
+    }
+    modal.style.display = "block";
+    const focusedInput = modal.querySelector("input");
+    focusedInput.focus();
+    document.querySelector(".books-cards").classList.add("blur");
+}
+
+function closeModal() {
+    modal.style.display = "none";
+    document.querySelector(".books-cards").classList.remove("blur");
+}
+
+function submitForm(event) {
+    event.preventDefault();
+    const title = titleInput.value;
+    const author = authorInput.value;
+    const pages = pagesInput.value;
+    const read = readInput.value;
+    const id = currentBook ? currentBook.id : new Date().getTime();
+    const book = new Book(id, title, author, pages, read);
+    if (currentBook) {
+        const index = myLibrary.findIndex((b) => b.id === currentBook.id);
+        myLibrary[index] = book;
+    } else {
+        addBookToLibrary(book);
+    }
+    renderBooks();
+    closeModal();
+}
 
 // ### Event Listeners ###
+bookForm.addEventListener("submit", submitForm);
 
 // ### Sample data ###
+const book1 = new Book(1, "The Hobbit", "J.R.R. Tolkien", 295, true);
+const book2 = new Book(2, "1984", "George Orwell", 328, false);
+addBookToLibrary(book1);
+addBookToLibrary(book2);
 
 // ### Initialize render ###
-
-const openModal = document.getElementById("btn-open-modal");
-const closeModal = document.getElementById("btn-close-modal");
-
-const elementToBlur = document.querySelector(".books-cards");
-// main div holding all bookings cards
-
-// Add books via form
-const addBookForm = document.querySelector(".book-form");
-addBookForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const data = new FormData(e.target);
-    let newBook = {};
-    for (let [name, value] of data) {
-        newBook[name] = value;
-    }
-    addBookToLibrary(
-        newBook["title"],
-        newBook["author"],
-        newBook["pages"],
-        getSelectedValue()
-    );
-    addBookForm.reset();
-    hideModal();
-});
-
-// Functions related to the modal
-function showModal() {
-    modal.style.display = "block";
-    let focusedInput = modal.querySelector("input");
-    focusedInput.focus();
-    elementToBlur.classList.add("blur");
-}
-
-function hideModal() {
-    modal.style.display = "none";
-    elementToBlur.classList.remove("blur");
-}
-
-openModal.addEventListener("click", () => {
-    document.querySelector(".form-title").textContent = "Add Book";
-    showModal();
-});
-closeModal.addEventListener("click", () => hideModal());
-
-// Functions related to the books constructor
-
-//Function to create all of the book content on the book dom card
-
-// Get the value select on the dropdown list
-function getSelectedValue() {
-    const selectElement = document.getElementById("isRead");
-    const selectedIndex = selectElement.selectedIndex;
-    const selectedValue = selectElement.options[selectedIndex].text;
-    return selectedValue;
-}
-
-//Books array
-
-addBookToLibrary("book1", "me", 34, "to Read");
-addBookToLibrary("book2", "me", 340, "Read");
-addBookToLibrary("book3", "me", 54, "to Read");
-addBookToLibrary("book4", "me", 3244, "to Read");
-
 renderBooks();
