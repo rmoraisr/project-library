@@ -131,10 +131,10 @@ function submitForm(event) {
 bookForm.addEventListener("submit", submitForm);
 
 // ### Sample data ###
-const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
-const book2 = new Book("1984", "George Orwell", 328, false);
-addBookToLibrary(book1);
-addBookToLibrary(book2);
+// const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
+// const book2 = new Book("1984", "George Orwell", 328, false);
+// addBookToLibrary(book1);
+// addBookToLibrary(book2);
 
 // ### Initialize render ###
 renderBooks();
