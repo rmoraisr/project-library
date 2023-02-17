@@ -152,7 +152,7 @@
     font-weight: 700;
 }
 
-.add-book-form {
+.book-form {
     display: flex;
     flex-direction: column;
     color: var(--colorDarker);
@@ -206,7 +206,8 @@ select {
 }
 
 .icons {
-    filter: invert(58%) sepia(9%) saturate(870%) hue-rotate(215deg) brightness(86%) contrast(83%);
+    filter: invert(58%) sepia(9%) saturate(870%) hue-rotate(215deg)
+        brightness(86%) contrast(83%);
     width: 1.5rem;
     align-self: flex-end;
 }

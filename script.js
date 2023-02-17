@@ -17,7 +17,56 @@ function addBookToLibrary(book) {
 
 // ### Render library ###
 
+// Helper function to create html elements with text content and classes
+function createBookElement(el, content, className) {
+    const element = document.createElement(el);
+    element.textContent = content;
+    element.setAttribute("class", className);
+    return element;
+}
+
+function renderBooks() {
+    const booksGrid = document.querySelector(".books-cards");
+    booksGrid.textContent = "";
+    for (let i = 0; i < myLibrary.length; i++) {
+        const book = myLibrary[i];
+        const bookCard = document.createElement("div");
+        bookCard.setAttribute("dataset-bookid", book.id);
+        bookCard.setAttribute("class", "book-card");
+        // edit icon
+        const editIcon = document.createElement("img");
+        editIcon.src = "./assets/pencil.svg";
+        editIcon.setAttribute("class", "icons");
+        editIcon.addEventListener("click", () => openModal("edit", book));
+        // delete icon
+        const deleteIcon = document.createElement("img");
+        deleteIcon.src = "./assets/trash-can.svg";
+        deleteIcon.setAttribute("class", "icons");
+        deleteIcon.addEventListener("click", () => {
+            myLibrary = myLibrary.filter((b) => b.id !== book.id);
+            renderBooks();
+        });
+        // book info
+        const title = createBookElement("h2", book.title, "book-title");
+        const author = createBookElement("p", `Author: ${book.author}`);
+        const pages = createBookElement("p", `Pages: ${book.pages}`);
+        // Is read button
+        const readButton = createBookElement(
+            "button",
+            book.isRead ? "Read" : "To Read",
+            "book-isRead"
+        );
+        readButton.addEventListener("click", () => {
+            book.isRead - !book.isRead;
+            readButton.textContent = book.isRead ? "Read" : "To Read";
+        });
+        // append all elements to the book item
+        bookCard.append(editIcon, deleteIcon, title, author, pages, readButton);
+    }
+}
+
 // ### Modal Form ###
+const modal = document.getElementById("modal");
 
 // ### Event Listeners ###
 
@@ -27,12 +76,12 @@ function addBookToLibrary(book) {
 
 const openModal = document.getElementById("btn-open-modal");
 const closeModal = document.getElementById("btn-close-modal");
-const modal = document.getElementById("modal");
+
 const elementToBlur = document.querySelector(".books-cards");
-const books = document.querySelector(".books-cards"); // main div holding all bookings cards
+// main div holding all bookings cards
 
 // Add books via form
-const addBookForm = document.querySelector("#add-book-form");
+const addBookForm = document.querySelector(".book-form");
 addBookForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -72,49 +121,7 @@ closeModal.addEventListener("click", () => hideModal());
 
 // Functions related to the books constructor
 
-//helper function to create html elements with text content and classes
-function createBookElement(el, content, className) {
-    const element = document.createElement(el);
-    element.textContent = content;
-    element.setAttribute("class", className);
-    return element;
-}
-
 //Function to create all of the book content on the book dom card
-function createBookItem(book) {
-    const bookItem = document.createElement("div");
-    bookItem.setAttribute("dataset-bookid", book.id);
-    bookItem.setAttribute("class", "book-card");
-    bookItem.append(
-        createEditIcon(book),
-        createBookElement("h2", `Title: ${book.title}`, "book-title"),
-        createBookElement("p", `Author: ${book.author}`, "book-author"),
-        createBookElement("p", `Pages: ${book.pages}`, "book-pages"),
-        createBookElement("button", book.isRead, "book-isRead")
-    );
-    books.append(bookItem);
-}
-
-// Render the Edit Icon into the book card
-function createEditIcon(book) {
-    const editIcon = document.createElement("img");
-    editIcon.src = "./assets/pencil.svg";
-    editIcon.setAttribute("class", "icons");
-    editIcon.addEventListener("click", () => editBookItem(book));
-    return editIcon;
-}
-
-// Open the modal with the book values when the edit icons is clicked
-function editBookItem(book) {
-    showModal();
-    document.querySelector(".form-title").textContent = "Edit Book";
-    document
-        .querySelector(".add-book-form")
-        .setAttribute("dataset-bookid", book.id);
-    document.querySelector("#title").value = book.title || "";
-    document.querySelector("#author").value = book.author || "";
-    document.querySelector("#pages").value = book.pages || "";
-}
 
 // Get the value select on the dropdown list
 function getSelectedValue() {
@@ -122,13 +129,6 @@ function getSelectedValue() {
     const selectedIndex = selectElement.selectedIndex;
     const selectedValue = selectElement.options[selectedIndex].text;
     return selectedValue;
-}
-
-function renderBooks() {
-    books.textContent = "";
-    myLibrary.map((book) => {
-        createBookItem(book);
-    });
 }
 
 //Books array
