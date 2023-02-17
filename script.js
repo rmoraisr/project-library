@@ -57,7 +57,7 @@ function renderBooks() {
             "book-isRead"
         );
         readButton.addEventListener("click", () => {
-            book.isRead - !book.isRead;
+            book.isRead = !book.isRead;
             readButton.textContent = book.isRead ? "Read" : "To Read";
         });
         // append all elements to the book item
@@ -80,7 +80,8 @@ const bookForm = document.getElementById("book-form");
 const titleInput = document.getElementById("title");
 const authorInput = document.getElementById("author");
 const pagesInput = document.getElementById("pages");
-const readInput = document.getElementById("isRead");
+const readSelect = document.getElementById("isRead");
+const read = readSelect.value === "true";
 let currentBook;
 
 function openModal(mode, book = null) {
@@ -92,7 +93,7 @@ function openModal(mode, book = null) {
         titleInput.value = book.title;
         authorInput.value = book.author;
         pagesInput.value = book.pages;
-        readInput.value = book.isRead;
+        readSelect.value = book.isRead;
     }
     modal.style.display = "block";
     const focusedInput = modal.querySelector("input");
@@ -110,7 +111,7 @@ function submitForm(event) {
     const title = titleInput.value;
     const author = authorInput.value;
     const pages = pagesInput.value;
-    const read = readInput.value;
+    const read = readSelect.value === "true";
     const id = currentBook ? currentBook.id : new Date().getTime();
     const book = new Book(title, author, pages, read, id);
     if (currentBook) {
