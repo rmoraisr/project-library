@@ -70,13 +70,22 @@ function createBookItem(book) {
     const bookItem = document.createElement("div");
     bookItem.setAttribute("dataset-bookid", book.id);
     bookItem.setAttribute("class", "book-card");
+    const deleteBook = document.createElement("img");
+    deleteBook.src = "./assets/trash-can.svg";
+    deleteBook.setAttribute("class", "icons delete-book");
     bookItem.append(
         createEditIcon(book),
+        deleteBook,
         createBookElement("h2", `Title: ${book.title}`, "book-title"),
         createBookElement("p", `Author: ${book.author}`, "book-author"),
         createBookElement("p", `Pages: ${book.pages}`, "book-pages"),
         createBookElement("button", book.isRead, "book-isRead")
     );
+
+    bookItem.querySelector(".delete-book").addEventListener("click", () => {
+        myLibrary.splice(bookId, 1);
+        renderBooks();
+    });
     books.append(bookItem);
 }
 
@@ -93,9 +102,7 @@ function createEditIcon(book) {
 function editBookItem(book) {
     showModal();
     document.querySelector(".form-title").textContent = "Edit Book";
-    document
-        .querySelector(".add-book-form")
-        .setAttribute("dataset-bookid", book.id);
+    document.querySelector(".add-book-form");
     document.querySelector("#title").value = book.title || "";
     document.querySelector("#author").value = book.author || "";
     document.querySelector("#pages").value = book.pages || "";
