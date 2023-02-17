@@ -20,7 +20,6 @@
 
 .container {
     height: 100vh;
-    border: solid red 2px;
     display: flex;
     flex-direction: column;
 }
@@ -206,7 +205,7 @@ select {
 }
 
 .icons-container {
-    position: absolute;
+    position: relative;
     align-self: flex-end;
 }
 
@@ -215,7 +214,6 @@ select {
         brightness(86%) contrast(83%);
     width: 1.5rem;
 }
-
 
 .footer {
     position: fixed;

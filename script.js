@@ -133,8 +133,21 @@ bookForm.addEventListener("submit", submitForm);
 // ### Sample data ###
 // const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
 // const book2 = new Book("1984", "George Orwell", 328, false);
+// const book3 = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
+// const book4 = new Book("1984", "George Orwell", 328, false);
+// const book5 = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
+// const book6 = new Book("1984", "George Orwell", 328, false);
+// const book7 = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
+// const book8 = new Book("1984", "George Orwell", 328, false);
+
 // addBookToLibrary(book1);
 // addBookToLibrary(book2);
+// addBookToLibrary(book3);
+// addBookToLibrary(book4);
+// addBookToLibrary(book5);
+// addBookToLibrary(book6);
+// addBookToLibrary(book7);
+// addBookToLibrary(book8);
 
 // ### Initialize render ###
 renderBooks();
