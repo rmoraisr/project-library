@@ -1,3 +1,19 @@
+// Book Constructor
+
+// Library Array
+
+// Add book to library
+
+// Render library
+
+// Modal Form
+
+// Event Listeners
+
+// Sample data
+
+// Initialize render
+
 const openModal = document.getElementById("btn-open-modal");
 const closeModal = document.getElementById("btn-close-modal");
 const modal = document.getElementById("modal");
