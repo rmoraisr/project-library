@@ -1,10 +1,10 @@
 // #### Book Constructor #####
-function Book(title, author, pages, isRead, id = new Date().getTime()) {
+function Book(title, author, pages, isRead, id) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
-    this.id = id;
+    this.id = id || new Date().getTime();
 }
 
 // ### Library Array ###
